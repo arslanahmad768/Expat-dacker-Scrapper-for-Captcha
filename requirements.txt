@@ -1,0 +1,5 @@
+webdriver-manager==4.0.1
+requests==2.32.3
+selenium==4.22.0
+bs4==0.0.2
+DrissionPage==4.0.5.6

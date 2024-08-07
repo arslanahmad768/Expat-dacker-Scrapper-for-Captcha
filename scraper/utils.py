@@ -15,13 +15,18 @@ def scrap_subcategory(driver, subcategory_href, category):
     # print("driver data====", driver.html)
     original_page_source = driver.html
     subcategory_content_list = driver.eles('.listings-cards__list-item ')
-    # print("total subcategory===", subcategory_content_list)
-    for index in range(len(subcategory_content_list)):
-        subcategory_content = subcategory_content_list[index]
-        print("sobcatgeory===", subcategory_content)
-        subCategory_content_href = subcategory_content.s_ele('.listing-card__inner')
-        subCategory_content_url = subCategory_content_href.attr('href')
-        print("content href===", subCategory_content_href.attr('href'))
+    subcategory_info = []
+    for subcategory_content in subcategory_content_list:
+        subCategory_content_href = subcategory_content.s_ele('.listing-card__inner').attr('href')
+        subcategory_info.append(subCategory_content_href)
+
+    for subCategory_content_url in subcategory_info:
+        # subcategory_content = subcategory_content_list[index]
+        # print("sobcatgeory===", subcategory_content)
+        # subCategory_content_href = subcategory_content.s_ele('.listing-card__inner')
+        # subCategory_content_url = subCategory_content_href.attr('href')
+        # print("content href===", subCategory_content_href.attr('href'))
+        print("url of subcategory==", subCategory_content_url)
         driver.get(subCategory_content_url)
         time.sleep(5)
 
@@ -176,11 +181,11 @@ def scrap_subcategory(driver, subcategory_href, category):
         print("ad_type_de_contrat===", ad_type_de_contrat)
         ad_type_de_véhicule = description_detail(driver, "Carrosserie")
         print("ad_type_de_véhicule===", ad_type_de_véhicule)
-        driver.get(subcategory_href)
-        time.sleep(5)
-        driver.load_mode(original_page_source)
+        # driver.get(subcategory_href)
+        # time.sleep(5)
+        # driver.load_mode(original_page_source)
         # Refresh the elements list to continue iterating correctly
-        subcategory_content_list = driver.eles('.listings-cards__list-item ')
+        # subcategory_content_list = driver.eles('.listings-cards__list-item ')
 
 def description_detail(driver, text):
     element = driver.s_ele(f'text:{text}')
